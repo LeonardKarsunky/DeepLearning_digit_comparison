@@ -55,8 +55,6 @@ the comparison of the two digits, we have implemented
 a MLP with two hidden layers. To train the model, we
 have also tested the use of an auxiliary loss, which means
 that instead of considering only the target result of the
-
-```
 comparison, the loss takes into account the knowledge of
 the classes of the two digits. Then, we will present in
 details the different architectures used to solve this problem.
@@ -108,14 +106,13 @@ inputs to layers in the network, we implemented a technique
 called batch normalization which standardizes the inputs to
 our network. After some extensive research on the topic, it
 is said to apply batch normalization before the activation
-```
-
 functions (ReLU) of each prior layer instead of to the
 inputs directly, since ReLU is a non-Gaussian distribution
 (for Tanh, it would be wiser after the activation functions).
 Indeed, we see a much lower variance of final test error
 when using batch normalization this way.
-
+```
+```
 Using dropout(D). Another deep regularization technique
 we implemented is dropout, in which we removed units
 from our neural network at random during the forward pass
@@ -125,7 +122,8 @@ network. Unlike batch normalization, we applied dropout
 after the activation of each layer. We found the optimal
 dropout parameter to bep= 0. 1 , meaning we keep90%of
 the parameters.
-
+```
+```
 Using both batch normalization and dropout(BD). By
 combining both batch normalization and dropout, we can
 benefit from both regularization techniques at the same
@@ -134,7 +132,8 @@ each layer and dropout to simulate having a large number
 of different network architectures using a single model.
 Again, batch normalization is used before and dropout is
 used after the activation functions of each layer, respectively.
-
+```
+```
 All of the above architectures were designed and imple-
 mented for the first part of our deep neural network, i.e.
 for the classification of our two digits. In the second part
@@ -166,8 +165,6 @@ the one with weight sharing but still no auxiliary loss. And
 finally, the architectures with auxiliary loss gives the best
 results with better prediction whether there is or not weight
 sharing. This reveals that in the case of MLP, the use of an
-
-```
 auxiliary loss is very important and the addition of weight
 sharing is useful principally when there is no auxiliary loss.
 When there is an auxiliary loss, the improvement of adding
@@ -175,6 +172,8 @@ weight sharing is quite small (difference of≈ 0 .8%, see
 Table I).
 ```
 ```
+![MLP_vs_architectures](https://user-images.githubusercontent.com/44574022/120075483-bbebea00-c0a1-11eb-8fc3-3b0720d7a14e.jpg)
+
 Figure 1: Test error with MLP network and different architectures.
 ```
 ```
@@ -189,6 +188,8 @@ respectively improve the prediction for our problem. And
 when the both are adding together we obtain the best results.
 ```
 ```
+![Conv_vs_architectures](https://user-images.githubusercontent.com/44574022/120075492-c8704280-c0a1-11eb-8b08-3ad98d87d874.jpg)
+
 Figure 2: Test error with convolutional network and different architectures.
 ```
 ```
@@ -198,9 +199,7 @@ and see how it improves the results. For MLP, the results
 presented in the figure (3) shows us that the add of dropout
 (only) gives an improve on the final test error of 4%.
 But the batch-normalization gives better results with an
-```
-
-improve of almost8%. And, we can see that in the case of
+improvement of almost 8%. And, we can see that in the case of
 MLP, when we combine batch-normalization and dropout,
 the test error is almost the same than if we only had
 batch-normalization. So, skipping some units with dropout
@@ -209,9 +208,12 @@ is no batch-normalization. Finally, for the case of MLP,
 batch-normalization is preferable instead of dropout, and
 combining the two seems to be useless for improving the
 results.
-
 ```
+```
+![MLP_B_D_BD](https://user-images.githubusercontent.com/44574022/120075508-e50c7a80-c0a1-11eb-8d21-d85b7a1278f6.jpg)
+
 Figure 3: Test error with MLP network and batch-normalization and dropout.
+```
 ```
 Now, we will compare the add of batch-normalization and
 dropout for the case of convolutional network. In the figure
@@ -224,9 +226,12 @@ only. But, since the difference of performance is less
 than1%(see table I), we can just say that when there is
 batch-normalization, the add of dropout doesn’t influence
 the performance.
+```
+```
+![Conv_B_D_BD](https://user-images.githubusercontent.com/44574022/120075521-efc70f80-c0a1-11eb-958c-b90c172ee6ec.jpg)
 
 Figure 4: Test error with convolutional network and batch-normalization and dropout.
-
+```
 ```
 Finally, we will compare the convolutional network and
 the MLP with their best architectures. The results are
@@ -238,6 +243,8 @@ best architecture that is with weight sharing, auxiliary loss,
 batch-normalization and dropout.
 ```
 ```
+![MLP_WS_AL_BD_vs_Conv_WS_AL_B](https://user-images.githubusercontent.com/44574022/120075542-03727600-c0a2-11eb-9c93-bd1e205abb67.jpg)
+
 Figure 5: Train and test error with convolutional network and MLP.
 ```
 ```
